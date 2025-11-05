@@ -1,0 +1,24 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/wookie/ros2_ws/install/controller_interface/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/robot_state_msgs/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/opt_ctrl_msgs/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/mcp_ep_msgs/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/controller_interface_msgs/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/control_interface_msgs/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages",
+        "/opt/openrobots/lib/python3.8/site-packages",
+        "{}"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/wookie/ros2_ws/install/controller_interface/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/robot_state_msgs/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/opt_ctrl_msgs/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/mcp_ep_msgs/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/controller_interface_msgs/lib/python3.8/site-packages",
+        "/home/wookie/ros2_ws/install/control_interface_msgs/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages",
+        "/opt/openrobots/lib/python3.8/site-packages",
+        "{}"
+    ]
+}

@@ -1,0 +1,28 @@
+<mujoco model="Kuka_LWR">
+
+    <include file="other/simple_scene.xml"/>
+    <include file="lwr/assets.xml"/>
+    <compiler meshdir=""/>
+
+    <option cone="elliptic" gravity="0 0 -9.81" timestep="0.001" integrator="Euler">
+        <flag contact="enable"/>
+    </option>
+
+    <worldbody>
+        <include file="lwr/kuka_lwr_arm_rigid.xml"/>
+
+        <!-- <include file="other/environment/environment_body.xml"/> -->
+    </worldbody>
+
+    <actuator>
+        <include file="lwr/actuators/torque_actuator.xml"/>
+        <!-- <include file="other/environment/environment_actuation.xml"/> -->
+    </actuator>
+
+    <sensor>
+        <include file="lwr/sensors/lwr_sensor.xml" />
+    </sensor>
+
+
+
+</mujoco>

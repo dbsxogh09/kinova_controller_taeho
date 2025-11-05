@@ -1,0 +1,32 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/wookie/ros2_ws/install/kinova_controller/include/**",
+        "/home/wookie/ros2_ws/install/robot_state_msgs/include/**",
+        "/home/wookie/ros2_ws/install/opt_ctrl_msgs/include/**",
+        "/home/wookie/ros2_ws/install/mcp_ep_msgs/include/**",
+        "/home/wookie/ros2_ws/install/controller_interface_msgs/include/**",
+        "/opt/ros/foxy/include/**",
+        "/home/wookie/ros2_ws/src/kinova_controller/include/**",
+        "/home/wookie/ros2_ws/src/mcp_ep/include/**",
+        "/home/wookie/ros2_ws/src/mujoco_simulate/include/**",
+        "/home/wookie/ros2_ws/src/optimal_control_framework/include/**",
+        "/home/wookie/ros2_ws/src/ros2_msgs/mcp_ep_msgs/include/**",
+        "/home/wookie/ros2_ws/src/ros2_msgs/opt_ctrl_msgs/include/**",
+        "/home/wookie/ros2_ws/src/ros2_msgs/robot_state_msgs/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

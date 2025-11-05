@@ -1,0 +1,65 @@
+<mujoco>
+
+    <body name="link_0" pos="0 0 0" euler="0 0 0"  childclass="lwr">
+      <inertial pos="-0.000638499331014356 5.02538509694617E-06 0.0482289968116927" mass="1.21032454350876" fullinertia="0.0262560565710656 0.0280724642508563 0.0306998250407766 -5.2754950052563E-07 3.77940202490646E-05 -2.56972470148208E-07"/>
+      <geom class = "visual" pos="0 0 0" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link0"/>
+      <site name="base_FT" pos="0 0 0" type="sphere" size="0.001"/>
+
+      <body name="link_1" pos="0 0 0.102" quat="0 0 0 1"  >
+        <inertial pos="-6.33965e-08 0.0233273 0.118146" quat="0.700951 0.0931056 -0.0931044 0.70095" mass="2.3034" diaginertia="0.162099 0.156081 0.0354425"/>
+        <joint name="joint_1" pos="0 0 0" axis="0 0 1" limited="true" range="-2.96706 2.96706" />
+        <site name="joint1_torque" pos="0 0 0" type="sphere" size="0.001"/>
+        <geom class = "visual" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link1"/>
+        <geom class = "collision" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link1"/>
+
+        <body name="link_2" pos="0 0 0.2085" >
+          <inertial pos="1.26775e-06 -0.0327465 0.0736557" quat="0.70298 0.0762839 -0.0762956 0.702979" mass="2.30344" diaginertia="0.014633 0.0142349 0.00374696"/>
+          <joint name="joint_2" pos="0 0 0" axis="0 -1 0" limited="true" range="-2.0944 2.0944" />
+          <site name="joint2_torque" pos="0 0 0" type="sphere" size="0.001"/>
+          <geom class = "visual" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link2"/>
+          <geom class = "collision" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link2"/>
+
+          <body name="link_3" pos="0 0 0.1915" >
+            <inertial pos="-1.40921e-06 -0.0233298 0.11815" quat="0.700958 -0.0931131 0.0931034 0.700942" mass="2.30342" diaginertia="0.016211 0.0156098 0.00354387"/>
+            <joint name="joint_3" pos="0 0 0" axis="0 0 1" limited="true" range="-2.96706 2.96706" />
+            <site name="joint3_torque" pos="0 0 0" type="sphere" size="0.001"/>
+            <geom class = "visual" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link3"/>
+            <geom class = "collision" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link3"/>
+
+            <body name="link_4" pos="0 0 0.2085" >
+              <inertial pos="1.12239e-07 0.0327442 0.0736588" quat="0.702959 -0.0762766 0.0762923 0.703" mass="2.30344" diaginertia="0.0146324 0.0142337 0.00374732"/>
+              <joint name="joint_4" pos="0 0 0" axis="0 1 0" limited="true" range="-2.0944 2.0944"/>
+              <site name="joint4_torque" pos="0 0 0" type="sphere" size="0.001"/>
+              <geom class = "visual" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link4"/>
+              <geom class = "collision" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link4"/>
+
+              <body name="link_5" pos="0 0 0.1915" >
+                <inertial pos="-6.00825e-07 0.0207752 0.0862054" quat="0.691034 0.150188 -0.150152 0.690919" mass="1.6006" diaginertia="0.00932793 0.00880807 0.0024044"/>
+                <joint name="joint_5" pos="0 0 0" axis="0 0 1" limited="true" range="-2.96706 2.96706"/>
+                <site name="joint5_torque" pos="0 0 0" type="sphere" size="0.001"/>
+                <geom class = "visual" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link5"/>
+                <geom class = "collision" quat="0 0 0 1" type="mesh" rgba="1 0.423529 0.196078 1" mesh="link5"/>
+
+                <body name="link_6" pos="0 0 0.1985" >
+                  <inertial pos="-2.64519e-08 -0.00451754 -0.00295325" quat="-0.00377958 0.707097 -0.0037577 0.707097" mass="1.49302" diaginertia="0.032363 0.0299832 0.0298541"/>
+                  <joint name="joint_6" pos="0 0 0" axis="0 -1 0" limited="true" range="-2.0944 2.0944"/>
+                  <site name="joint6_torque" pos="0 0 0" type="sphere" size="0.001"/>
+                  <geom class = "visual" quat="0 0 0 1" type="mesh" rgba="0.3 0.3 0.3 1" mesh="link6"/>
+                  <geom class = "collision" quat="0 0 0 1" type="mesh" rgba="0.3 0.3 0.3 1" mesh="link6"/>
+
+                  <body name="link_7" pos="0 0 0.078" >
+                    <inertial pos="0 0 -0.0158147" quat="0.5 0.5 -0.5 0.5" mass="0.108688" diaginertia="0.0700757 0.0417909 0.0417909"/>
+                    <joint name="joint_7" pos="0 0 0" axis="0 0 1" limited="true" range="-2.96706 2.96706"/>
+                    <site name="joint7_torque" pos="0 0 0" type="sphere" size="0.001"/>
+                    <site name="ee_site" pos="0 0 0" type="sphere" size="0.001" rgba="1 0 0 1"/>
+                    <geom class = "visual" quat="0 0 0 1" type="mesh" rgba="0.7 0.7 0.7 1" mesh="link7"/>
+                    <geom class = "collision" quat="0 0 0 1" type="mesh" rgba="0.7 0.7 0.7 1" mesh="link7"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+</mujoco>

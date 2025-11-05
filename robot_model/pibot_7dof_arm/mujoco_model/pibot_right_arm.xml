@@ -1,0 +1,103 @@
+<mujoco model="upper_body_assembly">
+  <compiler angle="radian" autolimits="true"/>
+  <default/>
+  <include file="other/simple_scene.xml"/>
+  <option cone="elliptic" gravity="0 0 -9.81" timestep="0.001" integrator="Euler">
+        <flag contact="disable"/>
+  </option> 
+  <asset>
+    <mesh name="link1" file="mesh/open_manipulator_7dof/link1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link2" file="mesh/open_manipulator_7dof/link2.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link3" file="mesh/open_manipulator_7dof/link3.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link4" file="mesh/open_manipulator_7dof/link4.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link5" file="mesh/open_manipulator_7dof/link5.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link6" file="mesh/open_manipulator_7dof/link6.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link7" file="mesh/open_manipulator_7dof/link7.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Arm2Hand" file="mesh/open_manipulator_7dof/Arm2Hand.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+  <worldbody>
+    <site name="base_FT" pos="0 0 -0.02" type="sphere" size="0.001"/>
+
+    <geom type="mesh" mesh="link1"/>
+    <body name="rightarm_link2" pos="0 0 0.126" gravcomp="0">
+      <inertial pos="0 0.000238 0.032024" quat="0.707038 0.707176 0 0" mass="0.943606" diaginertia="0.00155269 0.00154078 0.000453275"/>
+      <joint name="rightarm_joint1" pos="0 0 0" axis="0 0 1" range="-2.98451 2.98451" armature="0.4"/>
+      <site name="joint1_torque" pos="0 0 0" type="sphere" size="0.001"/>
+
+      <geom type="mesh" mesh="link2"/>
+      <body name="rightarm_link3" pos="0 0.069 0.033" gravcomp="0">
+        <inertial pos="1e-06 -0.068947 0.116982" quat="0.999998 0.00210799 2.97476e-06 6.27079e-09" mass="1.28" diaginertia="0.00495528 0.00426937 0.00142563"/>
+        <joint name="rightarm_joint2" pos="0 0 0" axis="0 1 0" range="-1.5708 1.5708" armature="0.4"/>
+        <site name="joint2_torque" pos="0 0 0" type="sphere" size="0.001"/>
+
+        <geom type="mesh" mesh="link3"/>
+        <body name="rightarm_link4" pos="0 -0.069 0.195" quat="0.707107 0 0 0.707107" gravcomp="0">
+          <inertial pos="0.021079 -0.00217 0.084922" quat="0.960347 -0.0467928 0.274844 0.00194528" mass="1.08" diaginertia="0.00185912 0.00127655 0.00122437"/>
+          <joint name="rightarm_joint3" pos="0 0 0" axis="0 0 1" range="-2.35619 2.35619" armature="0.4"/>
+          <site name="joint3_torque" pos="0 0 0" type="sphere" size="0.001"/>
+
+          <geom type="mesh" mesh="link4"/>
+          <body name="rightarm_link5" pos="0.029998 0.0575 0.097498" gravcomp="0">
+            <inertial pos="0.120043 -0.056958 0.029662" quat="0.0010908 0.700837 0.000707795 0.71332" mass="1.2127" diaginertia="0.00440154 0.00403671 0.0011482"/>
+            <joint name="rightarm_joint4" pos="0 0 0" axis="0 1 0" range="-2.04204 1.5708" armature="0.4"/>
+            <site name="joint4_torque" pos="0 0 0" type="sphere" size="0.001"/>
+
+            <geom type="mesh" mesh="link5"/>
+            <body name="rightarm_link6" pos="0.195 -0.0575 0.03" gravcomp="0">
+              <inertial pos="0.057143 -0.002069 0" quat="0.499395 0.500604 -0.499395 0.500604" mass="0.466355" diaginertia="0.000404989 0.000316834 0.000219587"/>
+              <joint name="rightarm_joint5" pos="0 0 0" axis="1 0 0" range="-2.98451 2.98451" armature="0.2"/>
+              <site name="joint5_torque" pos="0 0 0" type="sphere" size="0.001"/>
+
+              <geom type="mesh" mesh="link6"/>
+              <body name="rightarm_link7" pos="0.063 0.045 0" gravcomp="0">
+                <inertial pos="0.069744 -0.045936 0" quat="-0.0353509 0.706223 0.0353509 0.706223" mass="0.425616" diaginertia="0.000471847 0.000408228 0.000187925"/>
+                <joint name="rightarm_joint6" pos="0 0 0" axis="0 1 0" range="-1.5708 1.5708" armature="0.2"/>
+                <site name="joint6_torque" pos="0 0 0" type="sphere" size="0.001"/>
+
+                <geom type="mesh" mesh="link7"/>
+                <body name="rightarm_fake_end_link" pos="0.123 -0.045 0" gravcomp="0">
+                  <inertial pos="0.00227379 -0.00194384 -0.0343059" quat="0.672427 0.685432 -0.195301 0.199703" mass="1.03777" diaginertia="2.00411 2.00391 2.00072"/>
+                  <joint name="rightarm_joint7" pos="0 0 0" axis="1 0 0" range="-2.98451 2.98451" armature="0.2"/>
+                  <site name="joint7_torque" pos="0 0 0" type="sphere" size="0.001"/>
+                  <site name='ee_site' pos="0.06 0 0" euler="-3.14159 0 0"/>
+
+                  <geom quat="0 -1 0 0" type="mesh" mesh="Arm2Hand"/>
+                  <geom size="0.012525 0.045 0.0125" pos="0.031875 0 -0.076" quat="0 -1 0 0" type="box"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="gen3_actuator_1" joint="rightarm_joint1" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-139 139" forcerange="-39 39"/>
+    <motor name="gen3_actuator_2" joint="rightarm_joint2" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-139 139" forcerange="-39 39"/>
+    <motor name="gen3_actuator_3" joint="rightarm_joint3" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-139 139" forcerange="-39 39"/>
+    <motor name="gen3_actuator_4" joint="rightarm_joint4" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-139 139" forcerange="-39 39"/>
+    <motor name="gen3_actuator_5" joint="rightarm_joint5" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-69 69" forcerange="-9 9"/>
+    <motor name="gen3_actuator_6" joint="rightarm_joint6" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-69 69" forcerange="-9 9"/>
+    <motor name="gen3_actuator_7" joint="rightarm_joint7" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-69 69" forcerange="-9 9"/>
+  </actuator>   
+
+  
+
+    <sensor>
+        <torque name="joint1_torque_sensor" site="joint1_torque"/>
+        <torque name="joint2_torque_sensor" site="joint2_torque"/>
+        <torque name="joint3_torque_sensor" site="joint3_torque"/>
+        <torque name="joint4_torque_sensor" site="joint4_torque"/>
+        <torque name="joint5_torque_sensor" site="joint5_torque"/>
+        <torque name="joint6_torque_sensor" site="joint6_torque"/>
+        <torque name="joint7_torque_sensor" site="joint7_torque"/>
+
+
+        <framepos name="ee_pos" objtype="site" objname="ee_site"/>
+        <framequat name="ee_quat" objtype="site" objname="ee_site"/>
+
+        <force name="F_sensor" site="base_FT"/>
+        <torque name="T_sensor" site="base_FT"/>
+    </sensor>
+    
+</mujoco>

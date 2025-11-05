@@ -1,0 +1,28 @@
+<mujoco>
+    <torque name="joint1_torque_sensor_l" site="joint1_torque_l"/>
+    <torque name="joint2_torque_sensor_l" site="joint2_torque_l"/>
+    <torque name="joint3_torque_sensor_l" site="joint3_torque_l"/>
+    <torque name="joint4_torque_sensor_l" site="joint4_torque_l"/>
+    <torque name="joint5_torque_sensor_l" site="joint5_torque_l"/>
+    <torque name="joint6_torque_sensor_l" site="joint6_torque_l"/>
+    <torque name="joint7_torque_sensor_l" site="joint7_torque_l"/>
+
+    <torque name="joint1_torque_sensor_r" site="joint1_torque_r"/>
+    <torque name="joint2_torque_sensor_r" site="joint2_torque_r"/>
+    <torque name="joint3_torque_sensor_r" site="joint3_torque_r"/>
+    <torque name="joint4_torque_sensor_r" site="joint4_torque_r"/>
+    <torque name="joint5_torque_sensor_r" site="joint5_torque_r"/>
+    <torque name="joint6_torque_sensor_r" site="joint6_torque_r"/>
+    <torque name="joint7_torque_sensor_r" site="joint7_torque_r"/>
+
+
+    <framepos name="ee_pos_l" objtype="site" objname="ee_site_l"/>
+    <framequat name="ee_quat_l" objtype="site" objname="ee_site_l"/>
+
+    <framepos name="ee_pos_r" objtype="site" objname="ee_site_r"/>
+    <framequat name="ee_quat_r" objtype="site" objname="ee_site_r"/>
+
+    <force name="F_sensor" site="base_FT"/>
+    <torque name="T_sensor" site="base_FT"/>
+
+</mujoco>

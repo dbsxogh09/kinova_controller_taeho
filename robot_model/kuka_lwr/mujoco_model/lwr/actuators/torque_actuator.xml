@@ -1,0 +1,11 @@
+<mujoco>
+
+    <motor name="lwr_actuator_1" joint="joint_1" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-2000 2000" forcerange="-2000 2000"/>
+    <motor name="lwr_actuator_2" joint="joint_2" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-2000 2000" forcerange="-2000 2000"/>
+    <motor name="lwr_actuator_3" joint="joint_3" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-1000 1000" forcerange="-1000 1000"/>
+    <motor name="lwr_actuator_4" joint="joint_4" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-1000 1000" forcerange="-1000 1000"/>
+    <motor name="lwr_actuator_5" joint="joint_5" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-1000 1000" forcerange="-1000 1000"/>
+    <motor name="lwr_actuator_6" joint="joint_6" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-300 300" forcerange="-300 300"/>
+    <motor name="lwr_actuator_7" joint="joint_7" gear="1" forcelimited="true" ctrllimited="true"  ctrlrange="-300 300" forcerange="-300 300"/>
+
+</mujoco>

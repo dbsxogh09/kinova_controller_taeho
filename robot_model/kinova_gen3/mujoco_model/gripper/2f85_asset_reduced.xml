@@ -1,0 +1,57 @@
+<mujoco>
+  <compiler angle="radian" meshdir="assets" autolimits="true"/>
+
+  <option impratio="10"/>
+
+  <asset>
+    <material name="metal" rgba="0.58 0.58 0.58 1"/>
+    <material name="silicone" rgba="0.1882 0.1882 0.1882 1"/>
+    <material name="gray" rgba="0.4627 0.4627 0.4627 1"/>
+    <material name="black" rgba="0.149 0.149 0.149 1"/>
+
+    <mesh class="2f85" file="gripper/assets/base_mount.stl"/>
+    <mesh class="2f85" file="gripper/assets/base.stl"/>
+    <mesh class="2f85" file="gripper/assets/driver.stl"/>
+    <mesh class="2f85" file="gripper/assets/coupler.stl"/>
+    <mesh class="2f85" file="gripper/assets/follower.stl"/>
+    <mesh class="2f85" file="gripper/assets/pad.stl"/>
+    <mesh class="2f85" file="gripper/assets/silicone_pad.stl"/>
+    <mesh class="2f85" file="gripper/assets/spring_link.stl"/>
+  </asset>
+
+  <default>
+    <default class="2f85">
+      <mesh scale="0.001 0.001 0.001"/>
+      <general biastype="affine"/>
+
+      <joint axis="1 0 0"/>
+      <default class="driver">
+        <joint range="0 0.8" armature="0.005" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="follower">
+        <joint range="-0.872664 0.872664" pos="0 -0.018 0.0065" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="spring_link">
+        <joint range="-0.29670597283 0.8" stiffness="0.05" springref="2.62" damping="0.00125"/>
+      </default>
+      <default class="coupler">
+        <joint range="-1.57 0" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+
+      <default class="vis">
+        <geom mass="0.00000001" type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="col">
+        <geom type="mesh" group="3"/>
+        <default class="pad_box1">
+          <geom mass="0.0" type="box" pos="0 -0.0026 0.028125" size="0.011 0.004 0.009375" friction="0.7"
+            solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.55 0.55 0.55 1"/>
+        </default>
+        <default class="pad_box2">
+          <geom mass="0" type="box" pos="0 -0.0026 0.009375" size="0.011 0.004 0.009375" friction="0.6"
+            solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.45 0.45 0.45 1"/>
+        </default>
+      </default>
+    </default>
+  </default>
+</mujoco>

@@ -1,0 +1,41 @@
+digraph G {
+node [shape=box];
+"world" [label="world"];
+"rightarm_link1" [label="rightarm_link1"];
+"rightarm_link2" [label="rightarm_link2"];
+"rightarm_link3" [label="rightarm_link3"];
+"rightarm_link4" [label="rightarm_link4"];
+"rightarm_link5" [label="rightarm_link5"];
+"rightarm_link6" [label="rightarm_link6"];
+"rightarm_link7" [label="rightarm_link7"];
+"rightarm_fake_end_link" [label="rightarm_fake_end_link"];
+"end_effector" [label="end_effector"];
+"rightarm_sensor_link" [label="rightarm_sensor_link"];
+"rightarm_camera_bottom_screw_frame" [label="rightarm_camera_bottom_screw_frame"];
+"rightarm_camera_link" [label="rightarm_camera_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"world" -> "world_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"world_joint" -> "rightarm_link1"
+"rightarm_link1" -> "rightarm_joint1" [label="xyz: 0 0 0.126 \nrpy: 0 -0 0"]
+"rightarm_joint1" -> "rightarm_link2"
+"rightarm_link2" -> "rightarm_joint2" [label="xyz: 0 0.069 0.033 \nrpy: 0 -0 0"]
+"rightarm_joint2" -> "rightarm_link3"
+"rightarm_link3" -> "rightarm_joint3" [label="xyz: 0 -0.069 0.195 \nrpy: 0 -0 1.5708"]
+"rightarm_joint3" -> "rightarm_link4"
+"rightarm_link4" -> "rightarm_joint4" [label="xyz: 0.029998 0.0575 0.097498 \nrpy: 0 -0 0"]
+"rightarm_joint4" -> "rightarm_link5"
+"rightarm_link5" -> "rightarm_joint5" [label="xyz: 0.195 -0.0575 0.03 \nrpy: 0 -0 0"]
+"rightarm_joint5" -> "rightarm_link6"
+"rightarm_link6" -> "rightarm_joint6" [label="xyz: 0.063 0.045 0 \nrpy: 0 -0 0"]
+"rightarm_joint6" -> "rightarm_link7"
+"rightarm_link7" -> "rightarm_joint7" [label="xyz: 0.123 -0.045 0 \nrpy: 0 -0 0"]
+"rightarm_joint7" -> "rightarm_fake_end_link"
+"rightarm_fake_end_link" -> "end_effector" [label="xyz: 0.06 0 0 \nrpy: 0 -0 0"]
+"end_effector" -> "end_effector"
+"rightarm_fake_end_link" -> "rightarm_to_link" [label="xyz: 0 0 0 \nrpy: 3.14159 0 0"]
+"rightarm_to_link" -> "rightarm_sensor_link"
+"rightarm_sensor_link" -> "rightarm_camera_joint" [label="xyz: 0.021275 0 0.0635 \nrpy: 0 -0 0"]
+"rightarm_camera_joint" -> "rightarm_camera_bottom_screw_frame"
+"rightarm_camera_bottom_screw_frame" -> "rightarm_camera_link_joint" [label="xyz: 0.0106 0.0175 0.0125 \nrpy: 0 -0 0"]
+"rightarm_camera_link_joint" -> "rightarm_camera_link"
+}

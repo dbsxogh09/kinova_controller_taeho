@@ -1,0 +1,46 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/wookie/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_planners/chomp/chomp_motion_planner/include/**",
+        "/home/wookie/catkin_ws/src/control_msg/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/geometric_shapes/include/**",
+        "/home/wookie/catkin_ws/src/Kinova_Controller_open/include/**",
+        "/home/wookie/catkin_ws/src/Multi-Contact-ParticleFilter-with-Exploration-Particle/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_planners/chomp/chomp_interface/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit_resources/prbt_ikfast_manipulator_plugin/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_ros/benchmarks/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_plugins/moveit_ros_control_interface/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_ros/move_group/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_ros/occupancy_map_monitor/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_ros/robot_interaction/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_ros/moveit_servo/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_setup_assistant/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_plugins/moveit_simple_controller_manager/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit_visual_tools/include/**",
+        "/home/wookie/catkin_ws/src/Mujoco-1dof/include/**",
+        "/home/wookie/catkin_ws/src/Mujoco-kinova/include/**",
+        "/home/wookie/catkin_ws/src/Optimal-Control/include/**",
+        "/home/wookie/catkin_ws/src/optimal_control_framework/include/**",
+        "/home/wookie/catkin_ws/src/ADD/pibot_low_level_torque_controller/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_planners/pilz_industrial_motion_planner/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/moveit/moveit_planners/pilz_industrial_motion_planner_testutils/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/rviz_visual_tools/include/**",
+        "/home/wookie/catkin_ws/src/ADD/moveit_folder/srdfdom/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

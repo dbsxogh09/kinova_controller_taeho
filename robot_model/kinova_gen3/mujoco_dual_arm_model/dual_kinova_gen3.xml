@@ -1,0 +1,45 @@
+<mujoco model="Dual_Kinova_Gen3">
+
+    <include file="other/simple_scene.xml"/>
+    <include file="gen3/assets.xml"/>
+    <compiler meshdir=""/>
+
+    <option cone="elliptic" gravity="0 0 -9.81" timestep="0.001" integrator="Euler">
+        <flag contact="enable"/>
+    </option>
+
+    <worldbody>
+        <body name="base" childclass="gen3" pos="0 0 0">
+            <inertial pos="0 0 -0.01" mass="0.672594" fullinertia="7.105e-1 7.163e-1 1.382 -1.120e-12 160.932e-6 3.553E-16" />
+            <geom class="visual" mesh="base_flange_visual"  rgba=".6 .6 .6 1"/>
+            <geom class="collision" mesh="base_flange_collision"/>
+            <site name="base_FT" pos="0 0 -0.02" type="sphere" size="0.001"/>
+
+                <!-- <include file="gen3/kinova_gen3_arm_left.xml"/> -->
+                <!-- <include file="gen3/kinova_gen3_arm_right.xml"/> -->
+                <include file="gen3/kinova_gen3_arm_left_rigid.xml"/>
+                <include file="gen3/kinova_gen3_arm_right_rigid.xml"/>
+        </body>
+
+        <body name="ATI_Mini85" pos="0 0 0">
+            <geom class="visual" mesh="ATI_Mini85_visual" rgba=".6 .6 .6 1"/>
+            <geom class="collision" mesh="ATI_Mini85_visual"/>
+        </body>
+
+        <include file="other/environment/environment_body.xml"/>
+
+        
+    </worldbody>
+
+    <actuator>
+        <include file="gen3/actuators/torque_actuator.xml"/>
+        <!-- <include file="other/environment/environment_actuation.xml"/> -->
+    </actuator>
+
+    <sensor>
+        <include file="gen3/sensors/gen3_sensor.xml" />
+    </sensor>
+
+
+
+</mujoco>
