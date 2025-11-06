@@ -93,14 +93,14 @@ joint_fric_gains:
   # Kp: [500.0, 500.0, 500.0, 500.0, 300.0, 300.0, 300.0]
   # Kd: [30.0, 30.0, 30.0, 30.0, 20.0, 20.0, 20.0]
   joint_stiffness_matrix : [8000, 8000, 8000, 8000, 7000, 7000, 7000]
-  torque_interface: "SECOND_ORDER_FRIC" # FIRST_ORDER_FRIC | SECOND_ORDER_FRIC | THIRD_ORDER_FRIC | INERTIA_RESHAPING | L1_FRIC | IMPLICIT_L1_FRIC
+  torque_interface: "COULOMB_OBSERVER" # FIRST_ORDER_FRIC | SECOND_ORDER_FRIC | THIRD_ORDER_FRIC | INERTIA_RESHAPING | L1_FRIC | IMPLICIT_L1_FRIC | COULOMB_OBSERVER
   verbose: false
 
 task_fric_gains:
   Kp: [1000.0, 500.0, 500.0, 5.0, 5.0, 5.0]
   Kd: [80.0, 80.0, 80.0, 2.0, 2.0, 2.0]
   joint_stiffness_matrix : [8000, 8000, 8000, 8000, 7000, 7000, 7000]
-  torque_interface: "SECOND_ORDER_FRIC" # FIRST_ORDER_FRIC | SECOND_ORDER_FRIC | THIRD_ORDER_FRIC | INERTIA_RESHAPING | L1_FRIC | IMPLICIT_L1_FRIC
+  torque_interface: "COULOMB_OBSERVER" # FIRST_ORDER_FRIC | SECOND_ORDER_FRIC | THIRD_ORDER_FRIC | INERTIA_RESHAPING | L1_FRIC | IMPLICIT_L1_FRIC | COULOMB_OBSERVER
   verbose: false
 
 # For torque control interface
@@ -144,7 +144,7 @@ implicit_l1_fric_gain:
   verbose: false  
 
 coulomb_observer_gain:
-  K : [5000, 5000, 5000, 5000, 5000, 5000, 5000]
-  L : [500, 500, 500, 500, 500, 500, 500]
+  K : [10, 10, 10, 10, 10, 10, 10]
+  L : [1, 1, 1, 1, 1, 1, 1]
   motor_inertia_matrix : [0.4, 0.4, 0.4, 0.4, 0.2, 0.2, 0.2]
   verbose: false  

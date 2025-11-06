@@ -24,6 +24,7 @@ void ControllerGain::init(const YAML::Node& node)
     read_INERTIA_RESHAPING_Gains(node);
     read_L1_FRIC_Gains(node);
     read_IMPLICIT_L1_FRIC_Gains(node);
+    read_COULOMB_OBSERVER_Gains(node);
 }
 
 void ControllerGain::print_matrix(const Eigen::MatrixXd& matrix, const std::string& name)
@@ -57,6 +58,10 @@ TORQUE_INTERFACE ControllerGain::select_torque_interface(const std::string& torq
     else if(torque_interface_str == "IMPLICIT_L1_FRIC")
     {
         return IMPLICIT_L1_FRIC;
+    }
+    else if(torque_interface_str == "COULOMB_OBSERVER")
+    {
+        return COULOMB_OBSERVER;
     }
     else
     {
@@ -430,6 +435,8 @@ void ControllerGain::read_FIRST_FRIC_Gains(const YAML::Node& node)
 
 void ControllerGain::read_SECOND_FRIC_Gains(const YAML::Node& node)
 {
+    std::cout << __FILE__ << ":" << __LINE__ << std::endl;
+
     try
     {
         const YAML::Node& gain_node = node["second_order_fric_gain"];
@@ -618,7 +625,9 @@ void ControllerGain::read_L1_FRIC_Gains(const YAML::Node& node)
 }
 
 void ControllerGain::read_IMPLICIT_L1_FRIC_Gains(const YAML::Node& node)
-{
+{    
+    std::cout << __FILE__ << ":" << __LINE__ << std::endl;
+
     try
     {
         const YAML::Node& gain_node = node["implicit_l1_fric_gain"];
@@ -670,6 +679,8 @@ void ControllerGain::read_IMPLICIT_L1_FRIC_Gains(const YAML::Node& node)
 
 void ControllerGain::read_COULOMB_OBSERVER_Gains(const YAML::Node& node)
 {
+    std::cout << __FILE__ << ":" << __LINE__ << std::endl;
+
     try
     {
         const YAML::Node& gain_node = node["coulomb_observer_gain"];
@@ -683,7 +694,8 @@ void ControllerGain::read_COULOMB_OBSERVER_Gains(const YAML::Node& node)
             std::vector<double> K_vec = gain_node["K"].as<std::vector<double>>();
             std::vector<double> L_vec = gain_node["L"].as<std::vector<double>>();
             std::vector<double> motor_inertia_vec = gain_node["motor_inertia_matrix"].as<std::vector<double>>();
-
+            
+            std::cout << __FILE__ << ":" << __LINE__ << std::endl;
             coulomb_observer_gains_.K.resize(K_vec.size(),K_vec.size()); 
             coulomb_observer_gains_.K.setZero();
 
@@ -697,6 +709,8 @@ void ControllerGain::read_COULOMB_OBSERVER_Gains(const YAML::Node& node)
             coulomb_observer_gains_.L.diagonal() = Eigen::Map<Eigen::VectorXd>(L_vec.data(),L_vec.size());
             coulomb_observer_gains_.motor_inertia_matrix.diagonal() = Eigen::Map<Eigen::VectorXd>(motor_inertia_vec.data(),motor_inertia_vec.size());
             
+            std::cout << __FILE__ << ":" << __LINE__ << std::endl;
+
             const bool verbose = gain_node["verbose"].as<bool>();
             if(verbose)
             {

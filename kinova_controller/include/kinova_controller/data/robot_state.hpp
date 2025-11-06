@@ -78,6 +78,7 @@ class RobotState
 
     Eigen::VectorXd tau_J; // JTS measurement
     Eigen::VectorXd base_wrench_measured; // base F/T sensor measurement
+    Eigen::VectorXd joint_temperatures; // joint motor temperatures
 
     Eigen::VectorXd tau_ext; // estimated external joint torque
     Eigen::VectorXd base_wrench_ext; // estimated external joint torque

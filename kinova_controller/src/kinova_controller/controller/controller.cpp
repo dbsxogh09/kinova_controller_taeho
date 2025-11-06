@@ -695,16 +695,23 @@ bool Controller::init_FRIC_task_controller()
         this->init_implicit_l1_friction_compensation();
         break; 
     case TORQUE_INTERFACE::COULOMB_OBSERVER:
+        cout << __LINE__ << "case TORQUE_INTERFACE::COULOMB_OBSERVER: init" << endl;
         this->init_coulomb_observer_friction_compensation();
+        cout << __LINE__ << "init_coulomb_observer_friction_compensation " << endl;
         break;    
     default:
         return false;
         break;
     }
+    cout << __LINE__ << "switch" << endl;
 
     for(int i=0; i<10; i++)
     {
+        cout << __LINE__ << "before FRIC_task_controller()" << endl;
+
         this->FRIC_task_controller();
+
+        cout << __LINE__ << "after FRIC_task_controller()" << endl;
     }
 
     std::cout<<"FRIC_task_controller is initialized"<<std::endl;
@@ -808,7 +815,7 @@ Eigen::VectorXd Controller::FRIC_task_controller()
     theta_d = robot_state->theta_init;
     I.setIdentity();
 
-    if(torque_interface == TORQUE_INTERFACE::INERTIA_RESHAPING || torque_interface == TORQUE_INTERFACE::FIRST_ORDER_FRIC || torque_interface == TORQUE_INTERFACE::IMPLICIT_L1_FRIC)
+    if(torque_interface == TORQUE_INTERFACE::INERTIA_RESHAPING || torque_interface == TORQUE_INTERFACE::FIRST_ORDER_FRIC || torque_interface == TORQUE_INTERFACE::IMPLICIT_L1_FRIC || torque_interface == TORQUE_INTERFACE::COULOMB_OBSERVER)
     {   
         // real state feedback
         Eigen::Matrix<double, 6, 1> error_task = -pinocchio::log6(rhtm).toVector();
@@ -818,7 +825,7 @@ Eigen::VectorXd Controller::FRIC_task_controller()
 
         cout << "desired : " << x_dot_des_final.transpose() << endl;
         cout << "current : " << (J*robot_state->dtheta).head(3).transpose() << endl;
-
+        cout << "Why??" << endl;
         e_task = error_task;
         Eigen::VectorXd g = robot_state->get_gravity(q_bar); 
         tauC = J.transpose()*(gain.Kp*e_task + gain.Kd*error_dot_task) + g;
@@ -847,7 +854,8 @@ Eigen::VectorXd Controller::FRIC_task_controller()
     }
     tauC += tau_2;
 
-    switch (controller_gain.get_TASK_FRIC_Gains().torque_interface)
+    // switch (controller_gain.get_TASK_FRIC_Gains().torque_interface)
+    switch (torque_interface)
     {
     case TORQUE_INTERFACE::FIRST_ORDER_FRIC:
         u = this->first_order_friction_compensation(tauC);
@@ -867,6 +875,12 @@ Eigen::VectorXd Controller::FRIC_task_controller()
     case TORQUE_INTERFACE::IMPLICIT_L1_FRIC:
         u = this->implicit_l1_friction_compensation(tauC);
         break;    
+    case TORQUE_INTERFACE::COULOMB_OBSERVER:
+        cerr << "[FRIC] entering COULOMB_OBSERVER\n";
+        u = this->coulomb_observer_friction_compensation(tauC);
+        cerr << "[FRIC] out COULOMB_OBSERVER\n";
+
+        break;  
     default:
         return Eigen::VectorXd::Zero(1); // ERROR signal
         break;
@@ -911,6 +925,8 @@ Eigen::VectorXd Controller::FRIC_task_controller()
              << data.e_dn.transpose() << " "
              << data.e_nr.transpose() << "\n";
     }
+
+    cout << __LINE__ << "return u" << endl;
 
     return u;
 }
@@ -1114,7 +1130,9 @@ bool Controller::init_second_order_friction_compensation()
 Eigen::VectorXd Controller::second_order_friction_compensation(const Eigen::VectorXd &desired_u)
 {
     const SECOND_FRIC_Gains &gain = controller_gain.get_SECOND_FRIC_Gains();
-
+    cout << __LINE__ << "gain.L: " <<  gain.L << endl;
+    cout << __LINE__ << "gain.Lp: "<< gain.Lp << endl;
+    cout << __LINE__ << "gain.motor_inertia_matrix: " << gain.motor_inertia_matrix << endl;
     // nominal plant update
     nominal_plant.ddtheta = (rotor_inertia_matrix_).inverse() * (desired_u - robot_state->tau_J);
     nominal_plant.dtheta = nominal_plant.dtheta + nominal_plant.ddtheta * dt;
@@ -1332,10 +1350,13 @@ Eigen::VectorXd Controller::implicit_l1_friction_compensation(const Eigen::Vecto
 bool Controller::init_coulomb_observer_friction_compensation()
 {
     //
+    cout << __LINE__ << "Controller::init_coulomb_observer_friction_compensation()" << endl;
+
     coulomb_observer_state.dtheta_hat.resize(nv); coulomb_observer_state.dtheta_hat.setZero();
     coulomb_observer_state.a_c_hat.resize(nv); coulomb_observer_state.a_c_hat.setZero();
     coulomb_observer_state.f_hat.resize(nv); coulomb_observer_state.f_hat.setZero();
     coulomb_observer_state.u_prev.resize(nv); coulomb_observer_state.u_prev.setZero();
+    cout << __LINE__ << "Controller::init_coulomb_observer_friction_compensation()" << endl;
 
     return true;
 }
@@ -1343,26 +1364,45 @@ bool Controller::init_coulomb_observer_friction_compensation()
 Eigen::VectorXd Controller::coulomb_observer_friction_compensation(const Eigen::VectorXd &desired_u)
 {
     const COULOMB_OBSERVER_Gains &gain = controller_gain.get_COULOMB_OBSERVER_Gains();
+    cout << __LINE__ << gain.K << endl;
+    cout << __LINE__ << gain.L << endl;
+    cout << __LINE__ << gain.motor_inertia_matrix << endl;
 
-    Eigen::VectorXd dtheta_hat(nv), ddtheta_hat(nv), e_w(nv),  a_c_hat(nv), da_c_hat(nv), u_prev(nq), tau_f_hat(nq);
+    cout << __LINE__ << "inside coulomb_observer_friction_compensation()" << endl;
+    Eigen::VectorXd dtheta_hat(nv), ddtheta_hat(nv), e_w(nv),  a_c_hat(nv), da_c_hat(nv), u_prev(nv), tau_f_hat(nv);
     dtheta_hat.setZero(); ddtheta_hat.setZero(); e_w.setZero(); a_c_hat.setZero(); da_c_hat.setZero(); tau_f_hat.setZero();
     
     // assign from memory
+    cout << __LINE__ << "inside coulomb_observer_friction_compensation()" << endl;
     dtheta_hat = coulomb_observer_state.dtheta_hat;
     a_c_hat = coulomb_observer_state.a_c_hat;
+    cout << __LINE__ << "a_c_hat: " << a_c_hat.transpose() << endl;
+
     u_prev = coulomb_observer_state.u_prev; // u_prev = desired_u + tau_f_hat at previous step
 
     // calculate observer dynamics
     e_w = robot_state->dtheta - dtheta_hat;
-    da_c_hat = -gain.L*e_w*robot_state->dtheta.sign();
-    ddtheta_hat = -a_c_hat * robot_state->dtheta.sign() + gain.K *e_w + u_prev - robot_state->tau_J;
+    cout << __LINE__ << endl;
+    da_c_hat = -gain.L*e_w*robot_state->dtheta.cwiseSign();
+    cout << __LINE__ << endl;
+    cout << __LINE__ << gain.K << endl;
+    cout << __LINE__ << e_w.transpose() << endl;
+    cout << __LINE__ << u_prev.transpose() << endl;
+    cout << __LINE__ << (gain.K *e_w + u_prev).transpose() << endl;
+    cout << __LINE__ << -a_c_hat.cwiseProduct(robot_state->dtheta.cwiseSign()).transpose() << endl;
+    ddtheta_hat = -a_c_hat.cwiseProduct(robot_state->dtheta.cwiseSign()) + gain.K *e_w + u_prev - robot_state->tau_J;
+    // ddtheta_hat = -a_c_hat;
+    cout << __LINE__ << "ddtheta_hat: " << ddtheta_hat.transpose() << endl;
 
     // update observer states
+    cout << __LINE__ << "inside coulomb_observer_friction_compensation()" << endl;
     a_c_hat = a_c_hat + da_c_hat*dt;
     dtheta_hat = dtheta_hat + ddtheta_hat*dt;
+    cout << __LINE__ << "inside coulomb_observer_friction_compensation()" << endl;
 
-    tau_f_hat = gain.motor_inertia_matrix * a_c_hat * robot_state->dtheta.sign();
-    
+    tau_f_hat = gain.motor_inertia_matrix * (a_c_hat.array() * robot_state->dtheta.array().sign()).matrix();
+    cout << __LINE__ << "tau_f_hat: " << tau_f_hat.transpose() << endl;
+    cout << "a_c_hat: " << a_c_hat.transpose() << endl;
     //update to memory
     coulomb_observer_state.u_prev = desired_u + tau_f_hat;
     coulomb_observer_state.dtheta_hat = dtheta_hat;

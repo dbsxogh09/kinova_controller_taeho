@@ -9,6 +9,7 @@ struct Gen3State
     Eigen::Matrix<double, 7, 1> joint_positions;
     Eigen::Matrix<double, 7, 1> joint_velocities;
     Eigen::Matrix<double, 7, 1> joint_torques;
+    Eigen::Matrix<double, 7, 1> joint_temperatures;
     Eigen::VectorXd converted_q;
 
     void print();
